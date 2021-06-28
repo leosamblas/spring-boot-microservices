@@ -1,0 +1,58 @@
+spring:
+  application:
+    name: api-gateway-server
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+      - id: product-service
+        uri: lb://PRODUCT-SERVICE
+        predicates:
+        - Path=/product/**
+        filters:
+        - RewritePath=/product, /
+      - id: order-service
+        uri: lb://ORDER-SERVICE
+        predicates:
+        - Path=/order/**
+        filters:
+        - RewritePath=/order, /
+      - id: notification-service
+        uri: lb://NOTIFICATION-SERVICE
+        predicates:
+        - Path=/notification/**
+        filters:
+        - RewritePath=/notification, /
+      - id: payment-service
+        uri: lb://PAYMENT-SERVICE
+        predicates:
+        - Path=/payment/**
+        filters:
+        - RewritePath=/payment, /
+      - id: user-service
+        uri: lb://USER-SERVICE
+        predicates:
+        - Path=/user/**
+        filters:
+        - RewritePath=/user, /
+        
+server:
+  port: 8090
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'

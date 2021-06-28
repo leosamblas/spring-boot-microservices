@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: discovery-server
+
+server:
+  port: 8761
+  
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+management:
+  endpoint:
+    shutdown:
+      enabled: true  
+  endpoints:
+    web:
+      exposure:
+        include: '*'
