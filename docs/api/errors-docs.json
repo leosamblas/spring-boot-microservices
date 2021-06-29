@@ -1,0 +1,33 @@
+{
+    "errors": [
+        {
+            "status": "400",
+            "title": "Invalid Query Parameter",
+            "source": {
+                "parameter": "include"
+            },
+            "detail": "The resource does not have an `author` relationship path."
+        },
+        {
+            "status": "403",
+            "title": "Not authorized",
+            "detail": "Editing secret powers is not authorized on Sundays."
+        },
+        {
+            "status": "422",
+            "title": "Invalid Attribute",
+            "source": {
+                "pointer": "data.attributes.firstName"
+            },
+            "detail": "First name must contain at least three characters."
+        },
+        {
+            "status": "500",
+            "title": "The backend responded with an error",
+            "source": {
+                "resource": "http://localhost:8090/order/api/..."
+            },
+            "detail": "Reputation service not responding after three requests."
+        }
+    ]
+}
